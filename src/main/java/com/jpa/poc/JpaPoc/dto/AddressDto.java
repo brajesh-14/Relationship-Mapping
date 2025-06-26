@@ -1,10 +1,16 @@
 package com.jpa.poc.JpaPoc.dto;
 
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
+
+@NoArgsConstructor
+@AllArgsConstructor
 public class AddressDto {
 
     private String village;
     private String city;
     private String state;
+
 
     public String getVillage() {
         return village;

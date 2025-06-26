@@ -26,6 +26,10 @@ public class User {
     @JsonIgnoreProperties
     private List<Address> address;
 
+    @OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
+    @JsonIgnoreProperties
+    private Nationality nationality;
+
     public String getAbout() {
         return about;
     }
@@ -72,5 +76,13 @@ public class User {
 
     public void setAddress(List<Address> address) {
         this.address = address;
+    }
+
+    public Nationality getNationality() {
+        return nationality;
+    }
+
+    public void setNationality(Nationality nationality) {
+        this.nationality = nationality;
     }
 }
