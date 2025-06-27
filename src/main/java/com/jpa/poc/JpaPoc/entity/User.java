@@ -30,6 +30,15 @@ public class User {
     @JsonIgnoreProperties
     private Nationality nationality;
 
+
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable(
+            joinColumns = @JoinColumn(name="id"),
+            inverseJoinColumns = @JoinColumn(name = "userId")
+    )
+    @JsonIgnore
+    private List<Languages> languages;
+
     public String getAbout() {
         return about;
     }
@@ -84,5 +93,13 @@ public class User {
 
     public void setNationality(Nationality nationality) {
         this.nationality = nationality;
+    }
+
+    public List<Languages> getLanguages() {
+        return languages;
+    }
+
+    public void setLanguages(List<Languages> languages) {
+        this.languages = languages;
     }
 }

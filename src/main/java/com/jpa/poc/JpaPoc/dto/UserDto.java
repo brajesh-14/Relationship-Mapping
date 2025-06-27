@@ -1,5 +1,6 @@
 package com.jpa.poc.JpaPoc.dto;
 
+import com.jpa.poc.JpaPoc.entity.Languages;
 import com.jpa.poc.JpaPoc.entity.Nationality;
 
 import java.util.List;
@@ -15,13 +16,17 @@ public class UserDto {
 
     private String nationality;
 
-    public UserDto(String firstName, String lastName, String gender, String about, List<AddressDto> addressDto, String nationality) {
+    private List<String> languages;
+
+
+    public UserDto(String firstName, String lastName, String gender, String about, List<AddressDto> addressDto, String nationality, List<String> languages) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.gender = gender;
         this.about = about;
         this.addressDto = addressDto;
         this.nationality = nationality;
+        this.languages = languages;
     }
 
     public String getFirstName() {
@@ -70,10 +75,13 @@ public class UserDto {
 
     public void setAbout(String about) {
         this.about = about;
+    }
 
+    public List<String> getLanguages() {
+        return languages;
+    }
 
-
-
-
+    public void setLanguages(List<String> languages) {
+        this.languages = languages;
     }
 }

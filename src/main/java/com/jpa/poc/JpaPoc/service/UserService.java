@@ -3,8 +3,10 @@ package com.jpa.poc.JpaPoc.service;
 import com.jpa.poc.JpaPoc.dto.AddressDto;
 import com.jpa.poc.JpaPoc.dto.UserDto;
 import com.jpa.poc.JpaPoc.entity.Address;
+import com.jpa.poc.JpaPoc.entity.Languages;
 import com.jpa.poc.JpaPoc.entity.Nationality;
 import com.jpa.poc.JpaPoc.entity.User;
+import com.jpa.poc.JpaPoc.repository.LanguageRepo;
 import com.jpa.poc.JpaPoc.repository.UserRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -18,6 +20,9 @@ public class UserService {
 
     @Autowired
     private UserRepo userRepo;
+
+    @Autowired
+    private LanguageRepo languageRepo;
 
 
     public User getUser(Long userId){
@@ -61,6 +66,18 @@ public class UserService {
             addressList.add(address);
         }
         user.setAddress(addressList);
+
+        List<Languages> languagesList = new ArrayList<>();
+        for(String lang : userdto.getLanguages()){
+            Languages langName = languageRepo.findByLanguage(lang);
+            if(langName == null){
+                langName = new Languages();
+                langName.setLanguage(lang);
+                languageRepo.save(langName);
+            }
+            languagesList.add(langName);
+        }
+        user.setLanguages(languagesList);
         return userRepo.save(user);
     }
 
